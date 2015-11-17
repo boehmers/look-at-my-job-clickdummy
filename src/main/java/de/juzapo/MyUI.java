@@ -9,7 +9,10 @@ import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.*;
-import com.vaadin.ui.Button.ClickEvent;
+import de.juzapo.views.FeedView;
+import de.juzapo.views.LoginView;
+import de.juzapo.views.SponsoredView;
+import de.juzapo.views.VideosView;
 
 /**
  *
@@ -19,6 +22,8 @@ import com.vaadin.ui.Button.ClickEvent;
 public class MyUI extends UI {
 
     Navigator navi;
+    public static boolean isLoggedIn = false;
+    public static String userName;
 
     public static final String VIEW_LOGIN = "login";
     public static final String VIEW_FEED = "feed";
@@ -29,10 +34,13 @@ public class MyUI extends UI {
     protected void init(VaadinRequest vaadinRequest) {
         navi = new Navigator(this, this);
 
-        navi.addView(VIEW_LOGIN, new LoginView(navi));
-        navi.addView(VIEW_FEED, new FeedView(navi));
-        navi.addView(VIEW_SPONSORED, new SponsoredView(navi));
-        navi.addView(VIEW_VIDEOS, new VideosView(navi));
+        Menu menu = new Menu(navi);
+        navi.addView(VIEW_FEED, new FeedView(menu));
+        navi.addView(VIEW_SPONSORED, new SponsoredView(menu));
+        navi.addView(VIEW_VIDEOS, new VideosView(menu));
+        navi.addView(VIEW_LOGIN, new LoginView(menu));
+
+        navi.navigateTo(VIEW_LOGIN);
     }
 
     @WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)

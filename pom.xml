@@ -84,6 +84,11 @@
 			<groupId>com.vaadin</groupId>
 			<artifactId>vaadin-themes</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.vaadin.alump.masonry</groupId>
+			<artifactId>masonry-addon</artifactId>
+			<version>0.5.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>

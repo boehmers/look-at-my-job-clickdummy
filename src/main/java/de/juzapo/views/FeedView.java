@@ -1,0 +1,60 @@
+package de.juzapo.views;
+
+import com.vaadin.navigator.View;
+import com.vaadin.navigator.ViewChangeListener;
+import com.vaadin.ui.*;
+import com.vaadin.ui.themes.ValoTheme;
+import de.juzapo.Menu;
+import de.juzapo.MyUI;
+import de.juzapo.components.FeedCloud;
+import org.vaadin.alump.masonry.MasonryLayout;
+
+/**
+ * Created by Manuel on 16.11.2015.
+ */
+public class FeedView extends VerticalLayout implements View {
+
+    private Menu menu;
+    private MasonryLayout masonry;
+
+    public FeedView(final Menu menu) {
+        this.menu = menu;
+        setSpacing(true);
+        setMargin(true);
+
+        HorizontalLayout postSomething = new HorizontalLayout();
+        postSomething.setSpacing(true);
+        postSomething.setMargin(true);
+        postSomething.setWidth("100%");
+        final TextField postInput = new TextField();
+        postInput.setWidth("100%");
+        postInput.setInputPrompt("Message");
+        postSomething.addComponent(postInput);
+        final Button post = new Button("Post!");
+        post.setStyleName(ValoTheme.BUTTON_DANGER);
+        post.addClickListener(new Button.ClickListener() {
+            @Override
+            public void buttonClick(Button.ClickEvent clickEvent) {
+                masonry.addComponent(new FeedCloud(postInput.getValue()));
+                postInput.setValue("");
+            }
+        });
+        postSomething.addComponent(post);
+        addComponent(postSomething);
+
+        masonry = new MasonryLayout();
+        masonry.setSizeFull();
+        addComponent(masonry);
+    }
+
+    @Override
+    public void enter(ViewChangeListener.ViewChangeEvent viewChangeEvent) {
+        if(MyUI.isLoggedIn) {
+            menu.setActiveButton(MyUI.VIEW_FEED);
+            addComponent(menu, 0);
+        } else {
+            menu.showLogin();
+            Notification.show("Sie sind nicht eingeloggt!", Notification.Type.ERROR_MESSAGE);
+        }
+    }
+}
