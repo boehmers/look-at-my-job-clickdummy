@@ -44,6 +44,14 @@ public class MyUI extends UI {
         navi.addView(VIEW_LOGIN, new LoginView(menu));
 
         navi.navigateTo(VIEW_LOGIN);
+        //TODO:
+        // - Welcome-Window, dass begrüsst und nach dem gewünschten Beruf fragt und falls nötig bei der
+        //   Wahl hilft, dass aber auch übersprungen werden kamn
+        //     -> das soll auch bei der aktuellen Combobox bei keine Ahnung angezeigt werden
+        // - Kontakt-Button bei den Posts
+        // - Messenger
+        // - Berufe zu den Posts
+        // - Als nicht eingeloggter posts sehen
     }
 
     @WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)
