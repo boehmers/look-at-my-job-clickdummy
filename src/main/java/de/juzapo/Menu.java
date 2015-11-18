@@ -8,7 +8,7 @@ import com.vaadin.ui.themes.ValoTheme;
 /**
  * Created by Manuel on 16.11.2015.
  */
-public class Menu extends VerticalLayout {
+public class Menu extends HorizontalLayout {
 
     private Navigator navi;
     private Button sponsoredButton;
@@ -20,6 +20,7 @@ public class Menu extends VerticalLayout {
         this.navi = navi;
         setMargin(true);
         setSpacing(true);
+        setWidth("100%");
 
         Label heading = new Label("look@myJob");
         heading.setStyleName(ValoTheme.LABEL_H1);
@@ -27,15 +28,6 @@ public class Menu extends VerticalLayout {
 
         HorizontalLayout buttons = new HorizontalLayout();
         buttons.setSpacing(true);
-
-        loginButton = new Button("Login");
-        loginButton.addClickListener(new Button.ClickListener() {
-            @Override
-            public void buttonClick(Button.ClickEvent event) {
-                navi.navigateTo(MyUI.VIEW_LOGIN);
-            }
-        });
-        buttons.addComponent(loginButton);
 
         feedButton = new Button("Feed");
         feedButton.addClickListener(new Button.ClickListener() {
@@ -64,6 +56,17 @@ public class Menu extends VerticalLayout {
         });
         buttons.addComponent(sponsoredButton);
 
+        HorizontalLayout login = new HorizontalLayout();
+        login.setSpacing(true);
+
+        loginButton = new Button("Login");
+        loginButton.addClickListener(new Button.ClickListener() {
+            @Override
+            public void buttonClick(Button.ClickEvent event) {
+                navi.navigateTo(MyUI.VIEW_LOGIN);
+            }
+        });
+
         final ComboBox berufe = new ComboBox("Welcher Beruf interessiert dich?");
         berufe.addItem("Keine Ahnung!");
         berufe.addItem("Alle!");
@@ -74,7 +77,7 @@ public class Menu extends VerticalLayout {
         berufe.addValueChangeListener(new Property.ValueChangeListener() {
             @Override
             public void valueChange(Property.ValueChangeEvent valueChangeEvent) {
-                if(berufe.getValue().equals("Keine Ahnung!")) {
+                if (berufe.getValue().equals("Keine Ahnung!")) {
                     Window interessen = new Window("Interessenvergleich");
                     interessen.setContent(new Label("Hier können dann Interessen eingegeben werden, zu denen dann Berufe gesucht werden."));
                     interessen.center();
@@ -86,9 +89,13 @@ public class Menu extends VerticalLayout {
                 }
             }
         });
-        buttons.addComponent(berufe);
+        login.addComponent(berufe);
+        login.addComponent(loginButton);
 
         addComponent(buttons);
+        addComponent(login);
+        setComponentAlignment(login, Alignment.TOP_RIGHT);
+        setComponentAlignment(buttons, Alignment.TOP_LEFT);
     }
 
     public void doLogin() {
