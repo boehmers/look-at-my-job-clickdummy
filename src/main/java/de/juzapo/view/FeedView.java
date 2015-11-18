@@ -40,7 +40,13 @@ public class FeedView extends VerticalLayout implements View {
         post.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent clickEvent) {
-                masonry.addComponent(new FeedCloud(postInput.getValue(), MyUI.testData.text1.getUser().getUsername()), MasonryLayout.DOUBLE_WIDE_STYLENAME);
+                masonry.addComponent(new FeedCloud(MyUI.testData.text1.getTitle(),
+                        MyUI.testData.text1.getUser().getUsername(),
+                        MyUI.testData.text1.getQ1(), MyUI.testData.text1.getQ2(),
+                        MyUI.testData.text1.getQ3(), MyUI.testData.text1.getQ4(),
+                        MyUI.testData.text1.getQ5(), MyUI.testData.text1.getQ6(),
+                        MyUI.testData.text1.getQ7(), MyUI.testData.text1.getQ8(),
+                        MyUI.testData.text1.getQ9()), MasonryLayout.DOUBLE_WIDE_STYLENAME);
                 postInput.setValue("");
             }
         });
@@ -51,8 +57,20 @@ public class FeedView extends VerticalLayout implements View {
         masonry.setSizeFull();
         addComponent(masonry);
 
-        entries.add(new FeedCloud(MyUI.testData.text1.getTitle(), MyUI.testData.text1.getUser().getUsername()));
-        entries.add(new FeedCloud(MyUI.testData.text2.getTitle(), MyUI.testData.text2.getUser().getUsername()));
+        entries.add(new FeedCloud(MyUI.testData.text1.getTitle(),
+                MyUI.testData.text1.getUser().getUsername(),
+                MyUI.testData.text1.getQ1(), MyUI.testData.text1.getQ2(),
+                MyUI.testData.text1.getQ3(), MyUI.testData.text1.getQ4(),
+                MyUI.testData.text1.getQ5(), MyUI.testData.text1.getQ6(),
+                MyUI.testData.text1.getQ7(), MyUI.testData.text1.getQ8(),
+                MyUI.testData.text1.getQ9()));
+        entries.add(new FeedCloud(MyUI.testData.text2.getTitle(),
+                MyUI.testData.text2.getUser().getUsername(),
+                MyUI.testData.text2.getQ1(), MyUI.testData.text2.getQ2(),
+                MyUI.testData.text2.getQ3(), MyUI.testData.text2.getQ4(),
+                MyUI.testData.text2.getQ5(), MyUI.testData.text2.getQ6(),
+                MyUI.testData.text2.getQ7(), MyUI.testData.text2.getQ8(),
+                MyUI.testData.text2.getQ9()));
 
         for (FeedCloud f : entries) {
             masonry.addComponent(f, MasonryLayout.DOUBLE_WIDE_STYLENAME);
