@@ -9,10 +9,10 @@ import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.*;
-import de.juzapo.views.FeedView;
-import de.juzapo.views.LoginView;
-import de.juzapo.views.SponsoredView;
-import de.juzapo.views.VideosView;
+import de.juzapo.view.FeedView;
+import de.juzapo.view.LoginView;
+import de.juzapo.view.SponsoredView;
+import de.juzapo.view.VideosView;
 
 /**
  *
@@ -21,7 +21,8 @@ import de.juzapo.views.VideosView;
 @Widgetset("de.juzapo.MyAppWidgetset")
 public class MyUI extends UI {
 
-    Navigator navi;
+    public static TestData testData = new TestData();
+
     public static boolean isLoggedIn = false;
     public static String userName;
 
@@ -29,6 +30,8 @@ public class MyUI extends UI {
     public static final String VIEW_FEED = "feed";
     public static final String VIEW_SPONSORED = "sponsored";
     public static final String VIEW_VIDEOS = "videos";
+
+    Navigator navi;
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {

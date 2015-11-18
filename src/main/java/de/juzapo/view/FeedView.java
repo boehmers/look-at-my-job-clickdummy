@@ -1,4 +1,4 @@
-package de.juzapo.views;
+package de.juzapo.view;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
@@ -9,6 +9,9 @@ import de.juzapo.MyUI;
 import de.juzapo.components.FeedCloud;
 import org.vaadin.alump.masonry.MasonryLayout;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Manuel on 16.11.2015.
  */
@@ -16,9 +19,11 @@ public class FeedView extends VerticalLayout implements View {
 
     private Menu menu;
     private MasonryLayout masonry;
+    private List<FeedCloud> entries;
 
     public FeedView(final Menu menu) {
         this.menu = menu;
+        this.entries = new ArrayList<>();
         setSpacing(true);
         setMargin(true);
 
@@ -35,7 +40,7 @@ public class FeedView extends VerticalLayout implements View {
         post.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent clickEvent) {
-                masonry.addComponent(new FeedCloud(postInput.getValue()));
+                masonry.addComponent(new FeedCloud(postInput.getValue(), MyUI.testData.text1.getUser().getUsername()), MasonryLayout.DOUBLE_WIDE_STYLENAME);
                 postInput.setValue("");
             }
         });
@@ -45,11 +50,18 @@ public class FeedView extends VerticalLayout implements View {
         masonry = new MasonryLayout();
         masonry.setSizeFull();
         addComponent(masonry);
+
+        entries.add(new FeedCloud(MyUI.testData.text1.getTitle(), MyUI.testData.text1.getUser().getUsername()));
+        entries.add(new FeedCloud(MyUI.testData.text2.getTitle(), MyUI.testData.text2.getUser().getUsername()));
+
+        for (FeedCloud f : entries) {
+            masonry.addComponent(f, MasonryLayout.DOUBLE_WIDE_STYLENAME);
+        }
     }
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent viewChangeEvent) {
-        if(MyUI.isLoggedIn) {
+        if (MyUI.isLoggedIn) {
             menu.setActiveButton(MyUI.VIEW_FEED);
             addComponent(menu, 0);
         } else {

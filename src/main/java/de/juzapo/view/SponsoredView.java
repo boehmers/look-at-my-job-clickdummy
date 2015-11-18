@@ -1,4 +1,4 @@
-package de.juzapo.views;
+package de.juzapo.view;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;

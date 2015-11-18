@@ -110,6 +110,8 @@ public class Menu extends HorizontalLayout {
                 doLogout();
             }
         });
+        getUI().getSession().setAttribute("jobUser", MyUI.testData.a);
+        Notification.show(getUI().getSession().getAttribute("jobUser").toString(), Notification.Type.ERROR_MESSAGE);
     }
 
     private void doLogout() {
