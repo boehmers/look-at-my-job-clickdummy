@@ -9,6 +9,7 @@ import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.*;
+import de.juzapo.jobsearch.JobsearchWindow;
 import de.juzapo.view.FeedView;
 import de.juzapo.view.LoginView;
 import de.juzapo.view.SponsoredView;
@@ -23,35 +24,53 @@ public class MyUI extends UI {
 
     public static TestData testData = new TestData();
 
-    public static boolean isLoggedIn = false;
-    public static String userName;
-
     public static final String VIEW_LOGIN = "login";
     public static final String VIEW_FEED = "feed";
     public static final String VIEW_SPONSORED = "sponsored";
     public static final String VIEW_VIDEOS = "videos";
+    public static boolean isLoggedIn = false;
 
-    Navigator navi;
+    private Navigator navi;
+    private JobsearchWindow jobWindow;
+    private Menu menu;
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
         navi = new Navigator(this, this);
 
-        Menu menu = new Menu(navi);
+        menu = new Menu(navi);
         navi.addView(VIEW_FEED, new FeedView(menu));
         navi.addView(VIEW_SPONSORED, new SponsoredView(menu));
         navi.addView(VIEW_VIDEOS, new VideosView(menu));
         navi.addView(VIEW_LOGIN, new LoginView(menu));
 
-        navi.navigateTo(VIEW_LOGIN);
+        navi.navigateTo(VIEW_FEED);
+
+        jobWindow = new JobsearchWindow();
+        addWindow(jobWindow);
         //TODO:
-        // - Welcome-Window, dass begrüsst und nach dem gewünschten Beruf fragt und falls nötig bei der
-        //   Wahl hilft, dass aber auch übersprungen werden kamn
-        //     -> das soll auch bei der aktuellen Combobox bei keine Ahnung angezeigt werden
+        // - Berufesuche-Hilfe-Wizard befüllen
+        // - Angebotene Jobs nach Filterparams füllen
+        // - Filterparams in Session schreiben
+        // - Feeds und Videos nach Filterparams filtern
         // - Kontakt-Button bei den Posts
         // - Messenger
-        // - Berufe zu den Posts
-        // - Als nicht eingeloggter posts sehen
+    }
+
+    public void openJobWindow() {
+        addWindow(jobWindow);
+    }
+
+    public Navigator getNavi() {
+        return navi;
+    }
+
+    public JobsearchWindow getJobWindow() {
+        return jobWindow;
+    }
+
+    public Menu getMenu() {
+        return menu;
     }
 
     @WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)

@@ -3,6 +3,7 @@ package de.juzapo.components;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
 import de.juzapo.Constants;
+import de.juzapo.model.Beruf;
 import org.vaadin.alump.masonry.MasonryLayout;
 
 import java.util.ArrayList;
@@ -13,9 +14,12 @@ import java.util.List;
  */
 public class FeedCloud extends VerticalLayout {
 
+    private Beruf beruf;
+
     private Button hideButton = new Button("Anzeigen");
     private boolean isVisible = false;
     private Label title = new Label();
+    private Label berufLabel = new Label();
     private Label user = new Label();
     private Label q1Head = new Label();
     private Label q1 = new Label();
@@ -38,8 +42,11 @@ public class FeedCloud extends VerticalLayout {
 
     private List<Component> compToHide = new ArrayList<>();
 
-    public FeedCloud(String title, String username, String q1, String q2, String q3, String q4, String q5
+    public FeedCloud(Beruf beruf, String title, String username, String q1, String q2, String q3, String q4, String q5
             , String q6, String q7, String q8, String q9) {
+        this.beruf = beruf;
+        berufLabel.setValue(beruf.getBezeichnung());
+        berufLabel.setStyleName(ValoTheme.LABEL_LIGHT);
         this.title.setValue(title);
         this.title.setStyleName(ValoTheme.LABEL_H3);
         user.setValue("by " + username);
@@ -92,6 +99,7 @@ public class FeedCloud extends VerticalLayout {
         compToHide.add(this.q9);
 
         addComponent(this.title);
+        addComponent(this.berufLabel);
         addComponent(hideButton);
         addComponent(q1Head);
         addComponent(this.q1);

@@ -15,6 +15,7 @@ public class Menu extends HorizontalLayout {
     private Button videosButton;
     private Button feedButton;
     private Button loginButton;
+    private final ComboBox berufe;
 
     public Menu(final Navigator navi) {
         this.navi = navi;
@@ -67,22 +68,14 @@ public class Menu extends HorizontalLayout {
             }
         });
 
-        final ComboBox berufe = new ComboBox("Welcher Beruf interessiert dich?");
-        berufe.addItem("Keine Ahnung!");
-        berufe.addItem("Alle!");
-        berufe.addItem("Bauer");
-        berufe.addItem("Informatiker");
-        berufe.addItem("Mediengestalter");
-        berufe.addItem("Jugendzentrums-Papa");
+        berufe = new ComboBox("Welcher Beruf interessiert dich?");
+        berufe.addItems(Constants.jobList);
         berufe.addValueChangeListener(new Property.ValueChangeListener() {
             @Override
             public void valueChange(Property.ValueChangeEvent valueChangeEvent) {
                 if (berufe.getValue().equals("Keine Ahnung!")) {
-                    Window interessen = new Window("Interessenvergleich");
-                    interessen.setContent(new Label("Hier können dann Interessen eingegeben werden, zu denen dann Berufe gesucht werden."));
-                    interessen.center();
-                    interessen.setModal(true);
-                    getUI().addWindow(interessen);
+                    MyUI ui = (MyUI) getUI();
+                    ui.openJobWindow();
                 } else {
                     Notification.show("Hier soll dann zum gewählten Beruf gefiltert werden. Jedes Video und jeder Post soll mit " +
                             "einem Beruf versehen werden.", Notification.Type.ERROR_MESSAGE);
@@ -160,5 +153,9 @@ public class Menu extends HorizontalLayout {
 
     public void navigateTo(String view) {
         navi.navigateTo(view);
+    }
+
+    public ComboBox getBerufe() {
+        return berufe;
     }
 }

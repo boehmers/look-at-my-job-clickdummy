@@ -27,7 +27,6 @@ public class LoginView extends VerticalLayout implements View {
             @Override
             public void buttonClick(Button.ClickEvent clickEvent) {
                 menu.doLogin();
-                MyUI.userName = username.getValue();
             }
         });
         addComponent(login);

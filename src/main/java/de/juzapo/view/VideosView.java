@@ -39,7 +39,7 @@ public class VideosView extends VerticalLayout implements View {
         post.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent clickEvent) {
-                masonry.addComponent(new VideoCloud(postInput.getValue()), MasonryLayout.DOUBLE_WIDE_STYLENAME);
+                masonry.addComponent(new VideoCloud(MyUI.testData.informatiker, postInput.getValue()), MasonryLayout.DOUBLE_WIDE_STYLENAME);
                 postInput.setValue("");
             }
         });
@@ -54,12 +54,7 @@ public class VideosView extends VerticalLayout implements View {
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent viewChangeEvent) {
-        if(MyUI.isLoggedIn) {
-            menu.setActiveButton(MyUI.VIEW_VIDEOS);
-            addComponent(menu, 0);
-        } else {
-            menu.showLogin();
-            Notification.show("Sie sind nicht eingeloggt!", Notification.Type.ERROR_MESSAGE);
-        }
+        menu.setActiveButton(MyUI.VIEW_VIDEOS);
+        addComponent(menu, 0);
     }
 }

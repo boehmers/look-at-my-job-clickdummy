@@ -1,10 +1,12 @@
 package de.juzapo;
 
+import de.juzapo.model.Beruf;
 import de.juzapo.model.TextInterview;
 import de.juzapo.model.User;
 import de.juzapo.model.VideoInterview;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Created by Manuel on 18.11.2015.
@@ -19,6 +21,10 @@ public class TestData {
 
     public VideoInterview video1 = new VideoInterview();
     public VideoInterview video2 = new VideoInterview();
+
+    public Beruf bauer;
+    public Beruf informatiker;
+    public Beruf juzPapa;
 
     public TestData() {
         ArrayList<String> exampleComments = new ArrayList<>();
@@ -72,5 +78,17 @@ public class TestData {
         video2.setTitle("Videointerview mit Carsten");
         video2.setComments(exampleComments);
         video2.setVideoUrl("VIDEOOOO");
+
+        bauer = new Beruf(Constants.JOB_1, Beruf.Verdienst.GUT, Arrays.asList(Beruf.BerufsTyp.HANDWERK, Beruf.BerufsTyp.STUDIUM),
+                Arrays.asList(Beruf.Interessen.TECHNIK), Arrays.asList(Beruf.Fähigkeiten.BELASTBARKEIT_GEISTIG, Beruf.Fähigkeiten.BELASTBARKEIT_KÖRPER,
+                Beruf.Fähigkeiten.FLEXIBILITÄT), Arrays.asList(Beruf.Qualifikationen.MITTLERER_SCHULABSCHLUSS));
+        informatiker = new Beruf(Constants.JOB_2, Beruf.Verdienst.SEHR_GUT, Arrays.asList(Beruf.BerufsTyp.STUDIUM, Beruf.BerufsTyp.DUALES_STUDIUM,
+                Beruf.BerufsTyp.BÜRO), Arrays.asList(Beruf.Interessen.TECHNIK, Beruf.Interessen.IT, Beruf.Interessen.KREATIVES_GESTALTEN,
+                Beruf.Interessen.KUNDENKONTAKT), Arrays.asList(Beruf.Fähigkeiten.BELASTBARKEIT_GEISTIG, Beruf.Fähigkeiten.FLEXIBILITÄT, Beruf.Fähigkeiten.KREATIVITÄT),
+                Arrays.asList(Beruf.Qualifikationen.ABITUR, Beruf.Qualifikationen.ABGESCHLOSSENE_AUSBILDUNG, Beruf.Qualifikationen.ABGESCHLOSSENES_STUDIUM,
+                        Beruf.Qualifikationen.MITTLERER_SCHULABSCHLUSS));
+        juzPapa = new Beruf(Constants.JOB_3, Beruf.Verdienst.BEFRIEDIGEND, Arrays.asList(Beruf.BerufsTyp.BÜRO, Beruf.BerufsTyp.SOZIALES_UMFELD),
+                Arrays.asList(Beruf.Interessen.KUNDENKONTAKT, Beruf.Interessen.KREATIVES_GESTALTEN), Arrays.asList(Beruf.Fähigkeiten.BELASTBARKEIT_GEISTIG,
+                Beruf.Fähigkeiten.EINFÜHLUNGSVERMÖGEN, Beruf.Fähigkeiten.KOMMUNIKATIV), Arrays.asList(Beruf.Qualifikationen.MITTLERER_SCHULABSCHLUSS));
     }
 }

@@ -20,17 +20,6 @@ public class SponsoredView extends VerticalLayout implements View {
         setSpacing(true);
         setMargin(true);
 
-        Label headingErgo = new Label("ERGO Direkt Versicherungen");
-        headingErgo.setStyleName(ValoTheme.LABEL_H2);
-        addComponent(headingErgo);
-        addComponent(new Label("Ergo Direkt Versicherungen ist ein Versicherungsunternehmen mit " +
-                "Sitz in Fürth und nach eigenen Angaben „Deutschlands meistgewählter Direktversicherer“. " +
-                "Sie gehören zur Ergo Versicherungsgruppe."));
-        Video video = new Video();
-        Link link = new Link("Website", new ExternalResource("https://www.ergodirekt.de/"));
-        addComponent(video);
-        addComponent(link);
-
         Label headingPost = new Label("Jugendzentrum Alte Post");
         headingPost.setStyleName(ValoTheme.LABEL_H2);
         addComponent(headingPost);
@@ -45,12 +34,7 @@ public class SponsoredView extends VerticalLayout implements View {
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent viewChangeEvent) {
-        if (MyUI.isLoggedIn) {
-            menu.setActiveButton(MyUI.VIEW_SPONSORED);
-            addComponent(menu, 0);
-        } else {
-            menu.showLogin();
-            Notification.show("Sie sind nicht eingeloggt!", Notification.Type.ERROR_MESSAGE);
-        }
+        menu.setActiveButton(MyUI.VIEW_SPONSORED);
+        addComponent(menu, 0);
     }
 }
