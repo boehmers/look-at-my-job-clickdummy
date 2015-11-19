@@ -45,6 +45,17 @@ public class JobOrHelpStep implements WizardStep {
         content.addComponent(skipButton);
         content.setComponentAlignment(skipButton, Alignment.MIDDLE_CENTER);
 
+        Button notSkipButton = new Button("Nein, ich brauche Hilfe bei der Jobauswahl.");
+        notSkipButton.setStyleName(ValoTheme.BUTTON_LINK);
+        notSkipButton.addClickListener(new Button.ClickListener() {
+            @Override
+            public void buttonClick(Button.ClickEvent clickEvent) {
+                wizard.next();
+            }
+        });
+        content.addComponent(notSkipButton);
+        content.setComponentAlignment(notSkipButton, Alignment.MIDDLE_CENTER);
+
         return content;
     }
 

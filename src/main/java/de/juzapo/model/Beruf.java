@@ -49,6 +49,11 @@ public class Beruf {
         return linkedQualis;
     }
 
+    @Override
+    public String toString() {
+        return bezeichnung;
+    }
+
     public enum Verdienst {
         SEHR_GUT {
             @Override

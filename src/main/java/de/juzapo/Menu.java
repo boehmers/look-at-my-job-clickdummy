@@ -4,6 +4,7 @@ import com.vaadin.data.Property;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
+import de.juzapo.jobsearch.JobSearchEngine;
 
 /**
  * Created by Manuel on 16.11.2015.
@@ -69,7 +70,11 @@ public class Menu extends HorizontalLayout {
         });
 
         berufe = new ComboBox("Welcher Beruf interessiert dich?");
-        berufe.addItems(Constants.jobList);
+        berufe.addItem("Keine Ahnung!");
+        berufe.addItem("Alle!");
+        berufe.addItem(MyUI.testData.bauer);
+        berufe.addItem(MyUI.testData.informatiker);
+        berufe.addItem(MyUI.testData.juzPapa);
         berufe.addValueChangeListener(new Property.ValueChangeListener() {
             @Override
             public void valueChange(Property.ValueChangeEvent valueChangeEvent) {

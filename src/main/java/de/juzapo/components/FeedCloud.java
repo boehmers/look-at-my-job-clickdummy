@@ -154,4 +154,12 @@ public class FeedCloud extends VerticalLayout {
             // bad practice, i know ;-)
         }
     }
+
+    public Beruf getBeruf() {
+        return beruf;
+    }
+
+    public void setBeruf(Beruf beruf) {
+        this.beruf = beruf;
+    }
 }

@@ -1,9 +1,10 @@
 package de.juzapo.jobsearch;
 
-import com.vaadin.ui.Button;
-import com.vaadin.ui.Component;
-import com.vaadin.ui.Label;
+import com.vaadin.data.util.BeanItem;
+import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
+import de.juzapo.MyUI;
+import de.juzapo.model.Beruf;
 import de.juzapo.model.FilterParams;
 import org.vaadin.teemu.wizards.Wizard;
 import org.vaadin.teemu.wizards.WizardStep;
@@ -15,7 +16,8 @@ public class HelpStep implements WizardStep {
 
     private Wizard helpWizard;
     private Wizard mainWizard;
-    private FilterParams filterParams;
+    private FilterParams filterParams = new FilterParams();
+    private BeanItem<FilterParams> fpBean = new BeanItem<>(filterParams);
 
     public HelpStep(Wizard wizard) {
         mainWizard = wizard;
@@ -28,9 +30,8 @@ public class HelpStep implements WizardStep {
 
     @Override
     public Component getContent() {
-        filterParams = new FilterParams();
         helpWizard = new Wizard();
-        helpWizard.setSizeFull();
+        helpWizard.setWidth("100%");
         helpWizard.getCancelButton().setVisible(false);
 
         Button nextButton = helpWizard.getNextButton();
@@ -48,10 +49,11 @@ public class HelpStep implements WizardStep {
             @Override
             public void buttonClick(Button.ClickEvent clickEvent) {
                 mainWizard.next();
-                helpWizard.getUI().getSession().setAttribute("filterParams", filterParams);
+                filterParams.setDoFilter(true);
             }
         });
 
+        mainWizard.getUI().getSession().setAttribute("filterParams", filterParams);
         helpWizard.addStep(new TypStep());
         helpWizard.addStep(new VerdienstStep());
         helpWizard.addStep(new InteressenStep());
@@ -70,7 +72,24 @@ public class HelpStep implements WizardStep {
 
         @Override
         public Component getContent() {
-            return new Label("Job-Typ-Abfrage");
+            VerticalLayout content = new VerticalLayout();
+            content.setMargin(true);
+            content.setSpacing(true);
+
+            Label header = new Label("Erzähl uns etwas über deine Vorstellungen. Welchen Typ von Job stellst du dir vor?");
+            header.setStyleName(ValoTheme.LABEL_COLORED);
+            content.addComponent(header);
+            content.setComponentAlignment(header, Alignment.MIDDLE_CENTER);
+
+            TwinColSelect jobTypes = new TwinColSelect();
+            jobTypes.setImmediate(true);
+            jobTypes.addItems(Beruf.BerufsTyp.values());
+            jobTypes.setPropertyDataSource(fpBean.getItemProperty("berufsTypen"));
+            jobTypes.setSizeFull();
+            content.addComponent(jobTypes);
+            content.setComponentAlignment(jobTypes, Alignment.MIDDLE_CENTER);
+
+            return content;
         }
 
         @Override
@@ -93,7 +112,24 @@ public class HelpStep implements WizardStep {
 
         @Override
         public Component getContent() {
-            return new Label("Verdienst-Abfrage");
+            VerticalLayout content = new VerticalLayout();
+            content.setMargin(true);
+            content.setSpacing(true);
+
+            Label header = new Label("Welche Gehaltsvorstellungen hast du ungefähr?");
+            header.setStyleName(ValoTheme.LABEL_COLORED);
+            content.addComponent(header);
+            content.setComponentAlignment(header, Alignment.MIDDLE_CENTER);
+
+            ListSelect verdienst = new ListSelect();
+            verdienst.setImmediate(true);
+            verdienst.addItems(Beruf.Verdienst.values());
+            verdienst.setPropertyDataSource(fpBean.getItemProperty("verdienst"));
+            verdienst.setSizeFull();
+            content.addComponent(verdienst);
+            content.setComponentAlignment(verdienst, Alignment.MIDDLE_CENTER);
+
+            return content;
         }
 
         @Override
@@ -116,7 +152,24 @@ public class HelpStep implements WizardStep {
 
         @Override
         public Component getContent() {
-            return new Label("Interessen-Abfrage");
+            VerticalLayout content = new VerticalLayout();
+            content.setMargin(true);
+            content.setSpacing(true);
+
+            Label header = new Label("Jetzt wollen wir noch deine Interessen ins Spiel bringen. Sag uns was dir im Job wichtig wäre!");
+            header.setStyleName(ValoTheme.LABEL_COLORED);
+            content.addComponent(header);
+            content.setComponentAlignment(header, Alignment.MIDDLE_CENTER);
+
+            TwinColSelect interessen = new TwinColSelect();
+            interessen.setImmediate(true);
+            interessen.addItems(Beruf.Interessen.values());
+            interessen.setPropertyDataSource(fpBean.getItemProperty("linkedInteressen"));
+            interessen.setSizeFull();
+            content.addComponent(interessen);
+            content.setComponentAlignment(interessen, Alignment.MIDDLE_CENTER);
+
+            return content;
         }
 
         @Override
@@ -139,7 +192,24 @@ public class HelpStep implements WizardStep {
 
         @Override
         public Component getContent() {
-            return new Label("Fähigkeiten-Abfrage");
+            VerticalLayout content = new VerticalLayout();
+            content.setMargin(true);
+            content.setSpacing(true);
+
+            Label header = new Label("Jeder kann etwas besonderes! Sag uns worin du besonders gut bist.");
+            header.setStyleName(ValoTheme.LABEL_COLORED);
+            content.addComponent(header);
+            content.setComponentAlignment(header, Alignment.MIDDLE_CENTER);
+
+            TwinColSelect fähigkeiten = new TwinColSelect();
+            fähigkeiten.setImmediate(true);
+            fähigkeiten.addItems(Beruf.Fähigkeiten.values());
+            fähigkeiten.setPropertyDataSource(fpBean.getItemProperty("linkedSkills"));
+            fähigkeiten.setSizeFull();
+            content.addComponent(fähigkeiten);
+            content.setComponentAlignment(fähigkeiten, Alignment.MIDDLE_CENTER);
+
+            return content;
         }
 
         @Override
@@ -162,7 +232,25 @@ public class HelpStep implements WizardStep {
 
         @Override
         public Component getContent() {
-            return new Label("Qualifikationen-Abfrage");
+            VerticalLayout content = new VerticalLayout();
+            content.setMargin(true);
+            content.setSpacing(true);
+
+            Label header = new Label("Zu guter Letzt spielt es natürlich auch eine Rolle welchen Bildungsweg du bisher bestritten hast. " +
+                    "Wähle aus, welche Abschlüsse du vorweisen kannst.");
+            header.setStyleName(ValoTheme.LABEL_COLORED);
+            content.addComponent(header);
+            content.setComponentAlignment(header, Alignment.MIDDLE_CENTER);
+
+            TwinColSelect qualifikationen = new TwinColSelect();
+            qualifikationen.setImmediate(true);
+            qualifikationen.addItems(Beruf.Qualifikationen.values());
+            qualifikationen.setPropertyDataSource(fpBean.getItemProperty("linkedQualis"));
+            qualifikationen.setSizeFull();
+            content.addComponent(qualifikationen);
+            content.setComponentAlignment(qualifikationen, Alignment.MIDDLE_CENTER);
+
+            return content;
         }
 
         @Override

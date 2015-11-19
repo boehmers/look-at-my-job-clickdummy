@@ -3,6 +3,8 @@ package de.juzapo.jobsearch;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
 import de.juzapo.Constants;
+import de.juzapo.MyUI;
+import de.juzapo.model.FilterParams;
 import org.vaadin.teemu.wizards.WizardStep;
 
 /**
@@ -30,9 +32,8 @@ public class JobStep implements WizardStep {
         content.setComponentAlignment(header, Alignment.MIDDLE_CENTER);
 
         jobPicks.setCaption("Such dir einen Job aus:");
-        jobPicks.addItems(Constants.jobList);
-        jobPicks.removeItem(Constants.JOB_NO_IDEA);
-        jobPicks.removeItem(Constants.JOB_ALL);
+        jobPicks.clear();
+        jobPicks.addItems(JobSearchEngine.getJobByFilterParams((FilterParams) MyUI.getCurrent().getSession().getAttribute("filterParams")));
         content.addComponent(jobPicks);
         content.setComponentAlignment(jobPicks, Alignment.MIDDLE_CENTER);
         return content;

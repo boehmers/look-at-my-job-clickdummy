@@ -40,13 +40,15 @@ public class FeedView extends VerticalLayout implements View {
         post.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent clickEvent) {
-                masonry.addComponent(new FeedCloud(MyUI.testData.bauer, MyUI.testData.text1.getTitle(),
+                FeedCloud f = new FeedCloud(MyUI.testData.bauer, MyUI.testData.text1.getTitle(),
                         MyUI.testData.text1.getUser().getUsername(),
                         MyUI.testData.text1.getQ1(), MyUI.testData.text1.getQ2(),
                         MyUI.testData.text1.getQ3(), MyUI.testData.text1.getQ4(),
                         MyUI.testData.text1.getQ5(), MyUI.testData.text1.getQ6(),
                         MyUI.testData.text1.getQ7(), MyUI.testData.text1.getQ8(),
-                        MyUI.testData.text1.getQ9()), MasonryLayout.DOUBLE_WIDE_STYLENAME);
+                        MyUI.testData.text1.getQ9());
+                entries.add(f);
+                masonry.addComponent(f, MasonryLayout.DOUBLE_WIDE_STYLENAME);
                 postInput.setValue("");
             }
         });
@@ -81,5 +83,20 @@ public class FeedView extends VerticalLayout implements View {
     public void enter(ViewChangeListener.ViewChangeEvent viewChangeEvent) {
         menu.setActiveButton(MyUI.VIEW_FEED);
         addComponent(menu, 0);
+        filter();
+    }
+
+    private void filter() {
+        if (menu.getBerufe().getValue() != null) {
+            if (!menu.getBerufe().getValue().equals("Keine Ahnung!") || !menu.getBerufe().getValue().equals("Alle!")) {
+                for (FeedCloud f : entries) {
+                    if (f.getBeruf().equals(menu.getBerufe().getValue())) {
+                        f.setVisible(true);
+                    } else {
+                        setVisible(false);
+                    }
+                }
+            }
+        }
     }
 }
