@@ -39,10 +39,11 @@ public class VideosView extends VerticalLayout implements View {
         upload.setWidth("100%");
         final TextField postInput = new TextField();
         postInput.setWidth("100%");
-        postInput.setInputPrompt("Eingeloggte Ansprechpartner können später hier posten. Aktuell nur Beispielerzeugung von Posts.");
+        postInput.setDescription("Aktuell nur Beispielerzeugung von Posts.");
+        postInput.setInputPrompt("Eingeloggte Ansprechpartner können später hier posten.");
         inputs.addComponent(postInput);
         inputs.addComponent(upload);
-        final Button post = new Button("Upload!");
+        final Button post = new Button("Post!");
         post.setStyleName(ValoTheme.BUTTON_DANGER);
         post.addClickListener(new Button.ClickListener() {
             @Override

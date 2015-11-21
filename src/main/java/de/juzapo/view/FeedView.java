@@ -33,7 +33,8 @@ public class FeedView extends VerticalLayout implements View {
         postSomething.setWidth("100%");
         final TextField postInput = new TextField();
         postInput.setWidth("100%");
-        postInput.setInputPrompt("Eingeloggte Ansprechpartner können später hier posten. Aktuell nur Beispielerzeugung von Posts.");
+        postInput.setDescription("Aktuell nur Beispielerzeugung von Posts.");
+        postInput.setInputPrompt("Eingeloggte Ansprechpartner können später hier posten.");
         postSomething.addComponent(postInput);
         final Button post = new Button("Post!");
         post.setStyleName(ValoTheme.BUTTON_DANGER);

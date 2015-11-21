@@ -92,7 +92,7 @@ public class Beruf {
         }, SOZIALES_UMFELD {
             @Override
             public String toString() {
-                return "Soziales Umfeld";
+                return "Soziales";
             }
         }, LEHRER {
             @Override
@@ -107,7 +107,7 @@ public class Beruf {
         }, DUALES_STUDIUM {
             @Override
             public String toString() {
-                return "Duales Studium";
+                return "Dualstudium";
             }
         }, GASTRONOMIE {
             @Override
@@ -126,7 +126,7 @@ public class Beruf {
         }, FLEXIBLE_ZEITEN {
             @Override
             public String toString() {
-                return "Flexible Zeiten";
+                return "Zeitenflexibilität";
             }
         }, TECHNIK {
             @Override
@@ -141,7 +141,7 @@ public class Beruf {
         }, KREATIVES_GESTALTEN {
             @Override
             public String toString() {
-                return "Kreatives Gestalten";
+                return "Kreatives";
             }
         }
     }
@@ -160,12 +160,12 @@ public class Beruf {
         }, BELASTBARKEIT_GEISTIG {
             @Override
             public String toString() {
-                return "Geistigte Belastbarkeit";
+                return "Stressresistenz";
             }
         }, BELASTBARKEIT_KÖRPER {
             @Override
             public String toString() {
-                return "Körperliche Belastbarkeit";
+                return "Belastbarkeit";
             }
         }, KOMMUNIKATIV {
             @Override
@@ -189,7 +189,7 @@ public class Beruf {
         }, MITTLERER_SCHULABSCHLUSS {
             @Override
             public String toString() {
-                return "Mittlerer Schulabschluss";
+                return "Realschulabschluss";
             }
         }, HAUPTSCHULABSCHLUSS {
             @Override
@@ -199,12 +199,12 @@ public class Beruf {
         }, ABGESCHLOSSENES_STUDIUM {
             @Override
             public String toString() {
-                return "Abgeschlossenes Studium";
+                return "Studium (abgeschlossen)";
             }
         }, ABGESCHLOSSENE_AUSBILDUNG {
             @Override
             public String toString() {
-                return "Abgeschlossene Ausbildung";
+                return "Ausbildung (abgeschlossen)";
             }
         },
     }
