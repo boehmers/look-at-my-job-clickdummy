@@ -2,9 +2,14 @@ package de.juzapo;
 
 import com.vaadin.data.Property;
 import com.vaadin.navigator.Navigator;
+import com.vaadin.server.ExternalResource;
+import com.vaadin.server.ThemeResource;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
+import de.juzapo.components.FeedCloud;
 import de.juzapo.jobsearch.JobSearchEngine;
+import de.juzapo.view.FeedView;
+import de.juzapo.view.VideosView;
 
 /**
  * Created by Manuel on 16.11.2015.
@@ -24,21 +29,21 @@ public class Menu extends HorizontalLayout {
         setSpacing(true);
         setWidth("100%");
 
-        Label heading = new Label("look@myJob");
-        heading.setStyleName(ValoTheme.LABEL_H1);
+        Button heading = new Button();
+        heading.setIcon(new ThemeResource("logo.png"));
+        heading.setStyleName(ValoTheme.BUTTON_LINK);
+        heading.setHeight("120px");
+        heading.setWidth("380px");
+        heading.addClickListener(new Button.ClickListener() {
+            @Override
+            public void buttonClick(Button.ClickEvent clickEvent) {
+                navi.navigateTo(MyUI.VIEW_VIDEOS);
+            }
+        });
         addComponent(heading);
 
         HorizontalLayout buttons = new HorizontalLayout();
         buttons.setSpacing(true);
-
-        feedButton = new Button("Feed");
-        feedButton.addClickListener(new Button.ClickListener() {
-            @Override
-            public void buttonClick(Button.ClickEvent event) {
-                navi.navigateTo(MyUI.VIEW_FEED);
-            }
-        });
-        buttons.addComponent(feedButton);
 
         videosButton = new Button("Videos");
         videosButton.addClickListener(new Button.ClickListener() {
@@ -48,6 +53,15 @@ public class Menu extends HorizontalLayout {
             }
         });
         buttons.addComponent(videosButton);
+
+        feedButton = new Button("Feed");
+        feedButton.addClickListener(new Button.ClickListener() {
+            @Override
+            public void buttonClick(Button.ClickEvent event) {
+                navi.navigateTo(MyUI.VIEW_FEED);
+            }
+        });
+        buttons.addComponent(feedButton);
 
         sponsoredButton = new Button("Sponsored");
         sponsoredButton.addClickListener(new Button.ClickListener() {
@@ -70,8 +84,9 @@ public class Menu extends HorizontalLayout {
         });
 
         berufe = new ComboBox("Welcher Beruf interessiert dich?");
-        berufe.addItem("Keine Ahnung!");
+        berufe.setNullSelectionAllowed(false);
         berufe.addItem("Alle!");
+        berufe.addItem("Keine Ahnung!");
         berufe.addItem(MyUI.testData.bauer);
         berufe.addItem(MyUI.testData.informatiker);
         berufe.addItem(MyUI.testData.juzPapa);
@@ -82,8 +97,15 @@ public class Menu extends HorizontalLayout {
                     MyUI ui = (MyUI) getUI();
                     ui.openJobWindow();
                 } else {
-                    Notification.show("Hier soll dann zum gewählten Beruf gefiltert werden. Jedes Video und jeder Post soll mit " +
-                            "einem Beruf versehen werden.", Notification.Type.ERROR_MESSAGE);
+                    HasComponents view = getParent();
+                    if(view instanceof FeedView) {
+                        FeedView feed = (FeedView) view;
+                        feed.filter();
+                    }
+                    if(view instanceof VideosView) {
+                        VideosView videos = (VideosView) view;
+                        videos.filter();
+                    }
                 }
             }
         });
@@ -109,7 +131,6 @@ public class Menu extends HorizontalLayout {
             }
         });
         getUI().getSession().setAttribute("jobUser", MyUI.testData.a);
-        Notification.show(getUI().getSession().getAttribute("jobUser").toString(), Notification.Type.ERROR_MESSAGE);
     }
 
     private void doLogout() {

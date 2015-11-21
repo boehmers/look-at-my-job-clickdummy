@@ -28,6 +28,7 @@ public class SponsoredView extends VerticalLayout implements View {
                 "der Kirchengemeinde und aus eigenen Einnahmen und Spenden."));
         Video video2 = new Video();
         Link link2 = new Link("Website", new ExternalResource("http://http://www.altepost.org/"));
+        link2.setTargetName("_blank");
         addComponent(video2);
         addComponent(link2);
     }

@@ -3,7 +3,10 @@ package de.juzapo.components;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
 import de.juzapo.Constants;
+import de.juzapo.MyUI;
 import de.juzapo.model.Beruf;
+import de.juzapo.model.User;
+import de.juzapo.view.MessageWindow;
 import org.vaadin.alump.masonry.MasonryLayout;
 
 import java.util.ArrayList;
@@ -15,12 +18,13 @@ import java.util.List;
 public class FeedCloud extends VerticalLayout {
 
     private Beruf beruf;
+    private User user;
 
     private Button hideButton = new Button("Anzeigen");
     private boolean isVisible = false;
     private Label title = new Label();
     private Label berufLabel = new Label();
-    private Label user = new Label();
+    private Label userLabel = new Label();
     private Label q1Head = new Label();
     private Label q1 = new Label();
     private Label q2Head = new Label();
@@ -42,15 +46,16 @@ public class FeedCloud extends VerticalLayout {
 
     private List<Component> compToHide = new ArrayList<>();
 
-    public FeedCloud(Beruf beruf, String title, String username, String q1, String q2, String q3, String q4, String q5
+    public FeedCloud(Beruf beruf, String title, User user, String q1, String q2, String q3, String q4, String q5
             , String q6, String q7, String q8, String q9) {
         this.beruf = beruf;
+        this.user = user;
         berufLabel.setValue(beruf.getBezeichnung());
         berufLabel.setStyleName(ValoTheme.LABEL_LIGHT);
         this.title.setValue(title);
         this.title.setStyleName(ValoTheme.LABEL_H3);
-        user.setValue("by " + username);
-        user.setStyleName(ValoTheme.LABEL_COLORED);
+        userLabel.setValue("by " + user.getUsername());
+        userLabel.setStyleName(ValoTheme.LABEL_COLORED);
         q1Head.setValue(Constants.QUESTION_1);
         q1Head.setStyleName(ValoTheme.LABEL_BOLD);
         compToHide.add(q1Head);
@@ -119,7 +124,6 @@ public class FeedCloud extends VerticalLayout {
         addComponent(this.q8);
         addComponent(q9Head);
         addComponent(this.q9);
-        addComponent(user);
 
         hideOrShow(isVisible);
 
@@ -135,6 +139,22 @@ public class FeedCloud extends VerticalLayout {
                 hideOrShow(isVisible);
             }
         });
+
+        HorizontalLayout footer = new HorizontalLayout();
+        footer.setWidth("100%");
+        footer.addComponent(userLabel);
+        footer.setComponentAlignment(userLabel, Alignment.BOTTOM_LEFT);
+        Button contact = new Button("Kontakt");
+        contact.addClickListener(new Button.ClickListener() {
+            @Override
+            public void buttonClick(Button.ClickEvent clickEvent) {
+                showMessage();
+            }
+        });
+        contact.setDescription("Wir ermöglichen dir Kontakt mit Personen aufzunehmen, die den Job ausüben, den du dir wünschst.");
+        footer.addComponent(contact);
+        footer.setComponentAlignment(contact, Alignment.BOTTOM_RIGHT);
+        addComponent(footer);
     }
 
     private void hideOrShow(boolean isVisible) {
@@ -153,6 +173,11 @@ public class FeedCloud extends VerticalLayout {
             // do nothing, because initialisation
             // bad practice, i know ;-)
         }
+    }
+
+    private void showMessage() {
+        MessageWindow msg = new MessageWindow(this.user);
+        getUI().addWindow(msg);
     }
 
     public Beruf getBeruf() {

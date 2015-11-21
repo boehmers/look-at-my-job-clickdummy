@@ -48,8 +48,8 @@ public class HelpStep implements WizardStep {
         finishButton.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent clickEvent) {
-                mainWizard.next();
                 filterParams.setDoFilter(true);
+                mainWizard.next();
             }
         });
 
@@ -76,7 +76,7 @@ public class HelpStep implements WizardStep {
             content.setMargin(true);
             content.setSpacing(true);
 
-            Label header = new Label("Erzähl uns etwas über deine Vorstellungen. Welchen Typ von Job stellst du dir vor?");
+            Label header = new Label("Erzähle uns etwas über deine Vorstellungen. Welchen Typ von Job stellst du dir vor? (Mehrfachauswahl möglich)");
             header.setStyleName(ValoTheme.LABEL_COLORED);
             content.addComponent(header);
             content.setComponentAlignment(header, Alignment.MIDDLE_CENTER);
@@ -156,7 +156,7 @@ public class HelpStep implements WizardStep {
             content.setMargin(true);
             content.setSpacing(true);
 
-            Label header = new Label("Jetzt wollen wir noch deine Interessen ins Spiel bringen. Sag uns was dir im Job wichtig wäre!");
+            Label header = new Label("Jetzt wollen wir noch deine Interessen ins Spiel bringen. Sage uns, was dir im Job wichtig ist! (Mehrfachauswahl möglich)");
             header.setStyleName(ValoTheme.LABEL_COLORED);
             content.addComponent(header);
             content.setComponentAlignment(header, Alignment.MIDDLE_CENTER);
@@ -196,7 +196,7 @@ public class HelpStep implements WizardStep {
             content.setMargin(true);
             content.setSpacing(true);
 
-            Label header = new Label("Jeder kann etwas besonderes! Sag uns worin du besonders gut bist.");
+            Label header = new Label("Jeder kann etwas Besonderes! Sage uns, worin du besonders gut bist. (Mehrfachauswahl möglich)");
             header.setStyleName(ValoTheme.LABEL_COLORED);
             content.addComponent(header);
             content.setComponentAlignment(header, Alignment.MIDDLE_CENTER);
@@ -236,8 +236,8 @@ public class HelpStep implements WizardStep {
             content.setMargin(true);
             content.setSpacing(true);
 
-            Label header = new Label("Zu guter Letzt spielt es natürlich auch eine Rolle welchen Bildungsweg du bisher bestritten hast. " +
-                    "Wähle aus, welche Abschlüsse du vorweisen kannst.");
+            Label header = new Label("Zu guter Letzt spielt es natürlich auch eine Rolle, welchen Bildungsweg du bisher bestritten hast. " +
+                    "Wähle aus, welche Abschlüsse du vorweisen kannst. (Mehrfachauswahl möglich)");
             header.setStyleName(ValoTheme.LABEL_COLORED);
             content.addComponent(header);
             content.setComponentAlignment(header, Alignment.MIDDLE_CENTER);

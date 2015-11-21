@@ -19,6 +19,7 @@ public class JobsearchWindow extends Window {
     private JobStep fourthStep;
 
     public JobsearchWindow() {
+        setResizable(false);
         wizard = new Wizard();
         wizard.setWidth("800px");
         wizard.setHeight("600px");

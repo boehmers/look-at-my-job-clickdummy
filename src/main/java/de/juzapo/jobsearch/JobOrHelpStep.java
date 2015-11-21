@@ -2,10 +2,12 @@ package de.juzapo.jobsearch;
 
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
+import de.juzapo.model.FilterParams;
 import org.vaadin.teemu.wizards.Wizard;
 import org.vaadin.teemu.wizards.WizardStep;
 
 import java.util.List;
+import java.util.logging.Filter;
 
 /**
  * Created by Manuel on 19.11.2015.
@@ -28,7 +30,7 @@ public class JobOrHelpStep implements WizardStep {
         VerticalLayout content = new VerticalLayout();
         content.setMargin(true);
 
-        Label header = new Label("Wenn du schon einen Job weißt dann klick auf den Link. Wenn nicht, klick auf \"Weiter\"");
+        Label header = new Label("Wenn du schon eine Vorstellung von deinem Wunschjob hast, dann klicke auf \"Ja\". Wenn nicht, klicke auf \"Nein\" oder \"Weiter\".");
         header.setStyleName(ValoTheme.LABEL_H2);
         content.addComponent(header);
         content.setComponentAlignment(header, Alignment.MIDDLE_CENTER);

@@ -12,7 +12,7 @@ import org.vaadin.teemu.wizards.WizardStep;
  */
 public class JobStep implements WizardStep {
 
-    private ComboBox jobPicks = new ComboBox("Welcher Beruf interessiert dich?");
+    private ComboBox jobPicks = new ComboBox();
 
     @Override
     public String getCaption() {
@@ -26,13 +26,13 @@ public class JobStep implements WizardStep {
         content.setMargin(true);
         content.setSpacing(true);
 
-        Label header = new Label("In der Liste hier findest du deine Jobvorschläge. Such dir einen aus und wir werden die Einträge für dich filtern.");
+        Label header = new Label("In dieser Liste findest du deine Jobvorschläge. Suche dir einen aus und wir filtern die Beiträge für dich.");
         header.setStyleName(ValoTheme.LABEL_H3);
         content.addComponent(header);
         content.setComponentAlignment(header, Alignment.MIDDLE_CENTER);
 
-        jobPicks.setCaption("Such dir einen Job aus:");
-        jobPicks.clear();
+        jobPicks.setCaption("Wähle einen Job:");
+        jobPicks.setNullSelectionAllowed(false);
         jobPicks.addItems(JobSearchEngine.getJobByFilterParams((FilterParams) MyUI.getCurrent().getSession().getAttribute("filterParams")));
         content.addComponent(jobPicks);
         content.setComponentAlignment(jobPicks, Alignment.MIDDLE_CENTER);

@@ -31,9 +31,9 @@ public class WelcomeStep implements WizardStep {
         content.addComponent(message1);
         content.setComponentAlignment(message1, Alignment.MIDDLE_CENTER);
 
-        Label message2 = new Label("Dann bist du bei uns genau richtig. Wir helfen dir anhand deiner Interessen und Fähigkeiten " +
+        Label message2 = new Label("Dann bist du bei uns genau richtig. Wir helfen dir, anhand deiner Interessen und Fähigkeiten " +
                 "den perfekten Job für dich zu finden. Wir zeigen dir Menschen, die deinen gewünschten Job ausüben und vermitteln " +
-                "dir den Kontakt zu ihnen falls du noch weitere Fragen hast. Wenn du dir schon einen Job ausgesucht hast, kannst du " +
+                "dir den Kontakt zu ihnen, falls du noch weitere Fragen hast. Wenn du dir schon einen Job ausgesucht hast, kannst du " +
                 "diese Schritte auch überspringen.");
         content.addComponent(message2);
         content.setComponentAlignment(message2, Alignment.MIDDLE_CENTER);

@@ -33,7 +33,7 @@ public class FeedView extends VerticalLayout implements View {
         postSomething.setWidth("100%");
         final TextField postInput = new TextField();
         postInput.setWidth("100%");
-        postInput.setInputPrompt("Message");
+        postInput.setInputPrompt("Eingeloggte Ansprechpartner können später hier posten. Aktuell nur Beispielerzeugung von Posts.");
         postSomething.addComponent(postInput);
         final Button post = new Button("Post!");
         post.setStyleName(ValoTheme.BUTTON_DANGER);
@@ -41,7 +41,7 @@ public class FeedView extends VerticalLayout implements View {
             @Override
             public void buttonClick(Button.ClickEvent clickEvent) {
                 FeedCloud f = new FeedCloud(MyUI.testData.bauer, MyUI.testData.text1.getTitle(),
-                        MyUI.testData.text1.getUser().getUsername(),
+                        MyUI.testData.text1.getUser(),
                         MyUI.testData.text1.getQ1(), MyUI.testData.text1.getQ2(),
                         MyUI.testData.text1.getQ3(), MyUI.testData.text1.getQ4(),
                         MyUI.testData.text1.getQ5(), MyUI.testData.text1.getQ6(),
@@ -60,14 +60,14 @@ public class FeedView extends VerticalLayout implements View {
         addComponent(masonry);
 
         entries.add(new FeedCloud(MyUI.testData.informatiker, MyUI.testData.text1.getTitle(),
-                MyUI.testData.text1.getUser().getUsername(),
+                MyUI.testData.text1.getUser(),
                 MyUI.testData.text1.getQ1(), MyUI.testData.text1.getQ2(),
                 MyUI.testData.text1.getQ3(), MyUI.testData.text1.getQ4(),
                 MyUI.testData.text1.getQ5(), MyUI.testData.text1.getQ6(),
                 MyUI.testData.text1.getQ7(), MyUI.testData.text1.getQ8(),
                 MyUI.testData.text1.getQ9()));
         entries.add(new FeedCloud(MyUI.testData.juzPapa, MyUI.testData.text2.getTitle(),
-                MyUI.testData.text2.getUser().getUsername(),
+                MyUI.testData.text2.getUser(),
                 MyUI.testData.text2.getQ1(), MyUI.testData.text2.getQ2(),
                 MyUI.testData.text2.getQ3(), MyUI.testData.text2.getQ4(),
                 MyUI.testData.text2.getQ5(), MyUI.testData.text2.getQ6(),
@@ -86,14 +86,18 @@ public class FeedView extends VerticalLayout implements View {
         filter();
     }
 
-    private void filter() {
+    public void filter() {
         if (menu.getBerufe().getValue() != null) {
-            if (!menu.getBerufe().getValue().equals("Keine Ahnung!") || !menu.getBerufe().getValue().equals("Alle!")) {
+            if (menu.getBerufe().getValue().equals("Keine Ahnung!") || menu.getBerufe().getValue().equals("Alle!")) {
+                for (FeedCloud f : entries) {
+                    f.setVisible(true);
+                }
+            } else {
                 for (FeedCloud f : entries) {
                     if (f.getBeruf().equals(menu.getBerufe().getValue())) {
                         f.setVisible(true);
                     } else {
-                        setVisible(false);
+                        f.setVisible(false);
                     }
                 }
             }

@@ -6,6 +6,7 @@ import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.annotations.Widgetset;
 import com.vaadin.navigator.Navigator;
+import com.vaadin.server.Page;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.*;
@@ -36,6 +37,8 @@ public class MyUI extends UI {
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
+        Page.getCurrent().setTitle("look@myJob");
+
         navi = new Navigator(this, this);
 
         menu = new Menu(navi);
@@ -44,17 +47,12 @@ public class MyUI extends UI {
         navi.addView(VIEW_VIDEOS, new VideosView(menu));
         navi.addView(VIEW_LOGIN, new LoginView(menu));
 
-        navi.navigateTo(VIEW_FEED);
+        navi.navigateTo(VIEW_VIDEOS);
 
         jobWindow = new JobsearchWindow();
         addWindow(jobWindow);
         //TODO:
-        // - Berufesuche-Hilfe-Wizard befüllen
-        // - Angebotene Jobs nach Filterparams füllen
-        // - Filterparams in Session schreiben
-        // - Feeds und Videos nach Filterparams filtern
-        // - Kontakt-Button bei den Posts
-        // - Messenger
+        // - Enums anzeige anpassen (zweite Wörter sind klein)
     }
 
     public void openJobWindow() {
