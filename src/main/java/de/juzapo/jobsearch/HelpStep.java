@@ -1,11 +1,10 @@
 package de.juzapo.jobsearch;
 
+import de.juzapo.model.Beruf;
+import de.juzapo.model.FilterParams;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
-import de.juzapo.MyUI;
-import de.juzapo.model.Beruf;
-import de.juzapo.model.FilterParams;
 import org.vaadin.teemu.wizards.Wizard;
 import org.vaadin.teemu.wizards.WizardStep;
 

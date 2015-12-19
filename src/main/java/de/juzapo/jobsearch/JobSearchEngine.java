@@ -7,7 +7,6 @@ import de.juzapo.model.FilterParams;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.logging.Filter;
 
 /**
  * Created by Manuel on 19.11.2015.

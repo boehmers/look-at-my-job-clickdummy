@@ -1,12 +1,12 @@
 package de.juzapo.view;
 
+import de.juzapo.MyUI;
+import de.juzapo.components.FeedCloud;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
 import de.juzapo.Menu;
-import de.juzapo.MyUI;
-import de.juzapo.components.FeedCloud;
 import org.vaadin.alump.masonry.MasonryLayout;
 
 import java.util.ArrayList;

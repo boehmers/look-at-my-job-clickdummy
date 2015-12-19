@@ -1,10 +1,10 @@
 package de.juzapo.view;
 
+import de.juzapo.MyUI;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.*;
 import de.juzapo.Menu;
-import de.juzapo.MyUI;
 
 /**
  * Created by Manuel on 16.11.2015.

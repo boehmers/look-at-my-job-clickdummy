@@ -1,10 +1,9 @@
 package de.juzapo.jobsearch;
 
+import de.juzapo.MyUI;
 import com.vaadin.ui.Button;
-import com.vaadin.ui.UI;
 import com.vaadin.ui.Window;
 import com.vaadin.ui.themes.ValoTheme;
-import de.juzapo.MyUI;
 import org.vaadin.teemu.wizards.Wizard;
 
 /**

@@ -1,8 +1,8 @@
 package de.juzapo.view;
 
+import de.juzapo.model.User;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
-import de.juzapo.model.User;
 
 /**
  * Created by Manuel on 21.11.2015.

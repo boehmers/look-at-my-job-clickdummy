@@ -1,15 +1,12 @@
 package de.juzapo;
 
+import de.juzapo.view.FeedView;
+import de.juzapo.view.VideosView;
 import com.vaadin.data.Property;
 import com.vaadin.navigator.Navigator;
-import com.vaadin.server.ExternalResource;
 import com.vaadin.server.ThemeResource;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
-import de.juzapo.components.FeedCloud;
-import de.juzapo.jobsearch.JobSearchEngine;
-import de.juzapo.view.FeedView;
-import de.juzapo.view.VideosView;
 
 /**
  * Created by Manuel on 16.11.2015.

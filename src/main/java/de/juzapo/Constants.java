@@ -1,5 +1,8 @@
 package de.juzapo;
 
+import de.juzapo.model.ApiInfo;
+import org.scribe.builder.api.FacebookApi;
+
 import java.util.ArrayList;
 
 /**
@@ -23,7 +26,15 @@ public final class Constants {
     public static final String JOB_2 = "Informatiker/in";
     public static final String JOB_3 = "Jugendzentrums-Papa/-Mama";
 
+    public static final ApiInfo FACEBOOK_API = new ApiInfo("Facebook",
+            FacebookApi.class,
+            "943236472433636",
+            "//TODO SECRET KEY",
+            "https://graph.facebook.com/me");
+
     public static final ArrayList<String> jobList = new ArrayList<String>() {{
             add(JOB_NO_IDEA); add(JOB_ALL); add(JOB_1); add(JOB_2); add(JOB_3);
     }};
+
+
 }

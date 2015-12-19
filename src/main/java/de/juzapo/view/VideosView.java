@@ -1,14 +1,12 @@
 package de.juzapo.view;
 
+import de.juzapo.MyUI;
+import de.juzapo.components.VideoCloud;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
-import com.vaadin.server.SystemError;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
 import de.juzapo.Menu;
-import de.juzapo.MyUI;
-import de.juzapo.components.FeedCloud;
-import de.juzapo.components.VideoCloud;
 import org.vaadin.alump.masonry.MasonryLayout;
 
 import java.util.ArrayList;
@@ -80,6 +78,8 @@ public class VideosView extends VerticalLayout implements View {
         menu.setActiveButton(MyUI.VIEW_VIDEOS);
         addComponent(menu, 0);
         filter();
+        MyUI ui = (MyUI) getUI();
+        ui.openJobWindow();
     }
 
     public void filter() {

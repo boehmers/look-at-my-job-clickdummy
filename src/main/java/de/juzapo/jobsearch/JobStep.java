@@ -1,9 +1,8 @@
 package de.juzapo.jobsearch;
 
+import de.juzapo.MyUI;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
-import de.juzapo.Constants;
-import de.juzapo.MyUI;
 import de.juzapo.model.FilterParams;
 import org.vaadin.teemu.wizards.WizardStep;
 

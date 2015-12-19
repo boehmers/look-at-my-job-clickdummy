@@ -2,12 +2,8 @@ package de.juzapo.jobsearch;
 
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
-import de.juzapo.model.FilterParams;
 import org.vaadin.teemu.wizards.Wizard;
 import org.vaadin.teemu.wizards.WizardStep;
-
-import java.util.List;
-import java.util.logging.Filter;
 
 /**
  * Created by Manuel on 19.11.2015.

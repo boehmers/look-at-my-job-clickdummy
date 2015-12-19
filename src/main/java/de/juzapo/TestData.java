@@ -1,9 +1,9 @@
 package de.juzapo;
 
-import de.juzapo.model.Beruf;
-import de.juzapo.model.TextInterview;
-import de.juzapo.model.User;
 import de.juzapo.model.VideoInterview;
+import de.juzapo.model.Beruf;
+import de.juzapo.model.User;
+import de.juzapo.model.TextInterview;
 
 import java.util.ArrayList;
 import java.util.Arrays;

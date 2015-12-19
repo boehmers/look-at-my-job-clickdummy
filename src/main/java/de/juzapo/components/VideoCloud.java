@@ -1,10 +1,10 @@
 package de.juzapo.components;
 
-import com.vaadin.ui.*;
-import com.vaadin.ui.themes.ValoTheme;
 import de.juzapo.MyUI;
 import de.juzapo.model.Beruf;
 import de.juzapo.model.User;
+import com.vaadin.ui.*;
+import com.vaadin.ui.themes.ValoTheme;
 import de.juzapo.view.MessageWindow;
 
 /**
